@@ -7,8 +7,8 @@ const upload = require("../../middlewares/upload");
 
 const router = express.Router();
 
-// get all superheroes
-router.get("/", ctrlWrapper(ctrl.getAllSuperheroes));
+// list superheroes
+router.get("/", ctrlWrapper(ctrl.listSuperheroes));
 
 // add new superhero
 router.post(
