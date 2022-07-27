@@ -1,0 +1,40 @@
+const express = require("express");
+const { ctrlWrapper, validation } = require("../../middlewares");
+
+const { superheroesSchemas } = require("../../schemas");
+const { superheroes: ctrl } = require("../../controllers");
+const upload = require("../../middlewares/upload");
+
+const router = express.Router();
+
+// get all superheroes
+router.get("/", ctrlWrapper(ctrl.getAllSuperheroes));
+
+// add new superhero
+router.post(
+  "/",
+  validation(superheroesSchemas.addSchema),
+  ctrlWrapper(ctrl.addSuperhero)
+);
+
+// get superhero by id
+router.get("/:id", ctrlWrapper(ctrl.getSuperheroById));
+
+// delete superhero by id
+router.delete("/:id", ctrlWrapper(ctrl.deleteSuperhero));
+
+//update superhero
+router.put(
+  "/:id",
+  validation(superheroesSchemas.updateSchema),
+  ctrlWrapper(ctrl.updateSuperhero)
+);
+
+// add or remove photo superhero
+router.patch(
+  "/:id",
+  upload.single("image"),
+  ctrlWrapper(ctrl.changeSuperheroImages)
+);
+
+module.exports = router;
