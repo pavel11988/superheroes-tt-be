@@ -1,5 +1,6 @@
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+const { BadRequest } = require("http-errors");
 
 const fs = require("fs/promises");
 const Jimp = require("jimp");
@@ -10,7 +11,7 @@ const changeSuperheroImages = async (req, res) => {
   console.log("change images");
 
   const { id } = req.params; // id superhero
-  const { imageToRemove } = req.body; // if we deleting some image
+  const { imageToRemove } = req.body; // if we are deleting some image (sending name-id)
 
   if (imageToRemove) {
     console.log(imageToRemove);
@@ -42,6 +43,10 @@ const changeSuperheroImages = async (req, res) => {
   }
 
   if (!imageToRemove) {
+    const superhero = await Superhero.findById(id);
+    if (superhero.images.length === 6) {
+      throw new BadRequest("You cannot add more than 6 images.");
+    }
     const { path: tempDir, originalname } = req.file;
     const [extention] = originalname.split(".").reverse();
 
@@ -50,20 +55,22 @@ const changeSuperheroImages = async (req, res) => {
     await fs.rename(tempDir, resultDir);
 
     const image = await Jimp.read(resultDir);
+
     const imageResize = await image.resize(Jimp.AUTO, 400);
     await imageResize.write(resultDir);
 
     const imageURL = path.join("images", newName);
-    console.log(imageURL);
-
-    const superhero = await Superhero.findById(id);
 
     const newImages = [...superhero.images, imageURL];
 
     await Superhero.findByIdAndUpdate(id, { images: newImages });
 
     res.status(201).json({
-      newImages,
+      status: "success",
+      code: 201,
+      data: {
+        newName,
+      },
     });
   }
 };
