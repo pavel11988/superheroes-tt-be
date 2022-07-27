@@ -26,7 +26,7 @@ const changeSuperheroImages = async (req, res) => {
       return imageName === imageToRemove;
     });
 
-    let newImages = superhero.images;
+    const newImages = superhero.images;
     newImages.splice(removeIndex, 1);
 
     await Superhero.findByIdAndUpdate(id, {
@@ -65,9 +65,9 @@ const changeSuperheroImages = async (req, res) => {
 
     await Superhero.findByIdAndUpdate(id, { images: newImages });
 
-    res.status(201).json({
+    res.status(200).json({
       status: "success",
-      code: 201,
+      code: 200,
       data: {
         newName,
       },

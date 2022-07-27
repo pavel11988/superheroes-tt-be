@@ -10,7 +10,9 @@ const addSuperhero = async (req, res) => {
     status: "success",
     code: 201,
     message: "A new superhero has been created!",
-    data: result,
+    data: {
+      result,
+    },
   });
 };
 

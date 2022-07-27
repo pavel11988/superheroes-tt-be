@@ -23,7 +23,7 @@ router.get("/:id", ctrlWrapper(ctrl.getSuperheroById));
 // delete superhero by id
 router.delete("/:id", ctrlWrapper(ctrl.deleteSuperhero));
 
-//update superhero
+// update superhero
 router.put(
   "/:id",
   validation(superheroesSchemas.updateSchema),

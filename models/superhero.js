@@ -33,7 +33,7 @@ const superheroShema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Superhero = model("superhero", superheroShema);
+const Superhero = model("superheroes", superheroShema);
 
 module.exports = {
   Superhero,
