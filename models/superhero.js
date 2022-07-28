@@ -1,5 +1,20 @@
 const { Schema, model } = require("mongoose");
 
+const ImageSchema = new Schema(
+  {
+    id: {
+      type: String,
+      required: [true, "Image id"],
+    },
+    extension: {
+      type: String,
+      required: [true, "Image extension"],
+    }
+  },
+  { _id: false }
+);
+
+
 const superheroShema = new Schema(
   {
     nickname: {
@@ -24,7 +39,7 @@ const superheroShema = new Schema(
     },
     images: [
       {
-        type: String,
+        type: ImageSchema,
         required: false,
         default: "",
       },
@@ -32,6 +47,7 @@ const superheroShema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
 
 const Superhero = model("superheroes", superheroShema);
 

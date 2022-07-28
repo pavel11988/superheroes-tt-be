@@ -30,11 +30,14 @@ router.put(
   ctrlWrapper(ctrl.updateSuperhero)
 );
 
-// add or remove photo superhero
+// add superhero photo
 router.patch(
   "/:id",
   upload.single("image"),
-  ctrlWrapper(ctrl.changeSuperheroImages)
+  ctrlWrapper(ctrl.addSuperheroImage)
 );
+
+// add superhero photo
+router.delete("/:superheroId/:imageId", ctrlWrapper(ctrl.deleteSuperheroImage));
 
 module.exports = router;

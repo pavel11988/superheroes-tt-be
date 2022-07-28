@@ -5,20 +5,20 @@ const addSchema = Joi.object().keys({
     .min(3)
     .required()
     .error(
-      new Error("Nickname is required and must have min length 3 characters.")
+      new Error("nickname is required and must have minimum 3 characters.")
     ),
   real_name: Joi.string()
     .required()
     .min(2)
     .error(
-      new Error("Real name is required and must have min length 2 characters.")
+      new Error("real_name is required and must have minimum 2 characters.")
     ),
   origin_description: Joi.string()
     .required()
     .min(10)
     .error(
       new Error(
-        "Description is required and must have min length 10 characters."
+        "origin_description is required and must have minimum 10 characters."
       )
     ),
   superpowers: Joi.string()
@@ -26,7 +26,7 @@ const addSchema = Joi.object().keys({
     .min(5)
     .error(
       new Error(
-        "Superpowers is required and must have min length 5 characters."
+        "superpowers is required and must have minimum 5 characters."
       )
     ),
   catch_phrase: Joi.string()
@@ -34,7 +34,7 @@ const addSchema = Joi.object().keys({
     .min(3)
     .error(
       new Error(
-        "Catch phrase is required and must have min length 3 characters."
+        "catch_phrase is required and must have minimum 3 characters."
       )
     ),
   images: Joi.array().max(9),
@@ -45,20 +45,20 @@ const updateSchema = Joi.object().keys({
     .min(3)
     .required()
     .error(
-      new Error("Nickname is required and must have min length 3 characters.")
+      new Error("nickname field is required and must have at least 3 characters.")
     ),
   real_name: Joi.string()
     .required()
     .min(2)
     .error(
-      new Error("Real name is required and must have min length 2 characters.")
+      new Error("real_name field is required and must have at least 2 characters.")
     ),
   origin_description: Joi.string()
     .required()
     .min(10)
     .error(
       new Error(
-        "Description is required and must have min length 10 characters."
+        "origin_description field is required and must have at least 10 characters."
       )
     ),
   superpowers: Joi.string()
@@ -66,7 +66,7 @@ const updateSchema = Joi.object().keys({
     .min(5)
     .error(
       new Error(
-        "Superpowers is required and must have min length 5 characters."
+        "superpowers field is required and must have at least 5 characters."
       )
     ),
   catch_phrase: Joi.string()
@@ -74,7 +74,7 @@ const updateSchema = Joi.object().keys({
     .min(3)
     .error(
       new Error(
-        "Catch phrase is required and must have min length 3 characters."
+        "catch_phrase phrase is required and must have at least 3 characters."
       )
     ),
   images: Joi.array().max(6),
