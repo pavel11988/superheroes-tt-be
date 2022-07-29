@@ -16,9 +16,10 @@ const addSchema = Joi.object().keys({
   origin_description: Joi.string()
     .required()
     .min(10)
+    .max(120)
     .error(
       new Error(
-        "origin_description is required and must have minimum 10 characters."
+        "origin_description is required and must have minimum 10 characters and maximum 120."
       )
     ),
   superpowers: Joi.string()
@@ -37,7 +38,7 @@ const addSchema = Joi.object().keys({
         "catch_phrase is required and must have minimum 3 characters."
       )
     ),
-  images: Joi.array().max(9),
+  images: Joi.array().max(6),
 });
 
 const updateSchema = Joi.object().keys({
@@ -56,6 +57,7 @@ const updateSchema = Joi.object().keys({
   origin_description: Joi.string()
     .required()
     .min(10)
+    .max(120)
     .error(
       new Error(
         "origin_description field is required and must have at least 10 characters."

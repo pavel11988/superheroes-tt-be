@@ -8,13 +8,21 @@ const { Superhero } = require("../../models");
 const imagesDir = path.join(__dirname, "../../", "public", "images");
 
 const addSuperheroImages = async (req, res) => {
-  console.log("add image");
 
   const { id } = req.params; // id superhero
   const superhero = await Superhero.findById(id);
+
+
   if (superhero.images.length === 6) {
     throw new BadRequest("You cannot add more than 6 images.");
   }
+
+  if(!req.file){
+    throw new BadRequest("Please, upload your image.");
+  }
+
+  console.log(req.file)
+
   const { path: tempDir, originalname } = req.file;
   const [extention] = originalname.split(".").reverse();
 
