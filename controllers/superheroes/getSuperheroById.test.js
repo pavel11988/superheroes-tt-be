@@ -4,13 +4,13 @@ require("dotenv").config();
 
 const app = require("../../app");
 const { Superhero } = require("../../models/");
-const { DB_HOST_TEST, PORT = 4003 } = process.env;
+const { DB_HOST_TEST, PORT = 4000 } = process.env;
 
 describe("test get by id superhero", () => {
   let server;
 
   beforeAll(async () => {
-    server = app.listen(4003);
+    server = app.listen(PORT);
     mongoose.connect(DB_HOST_TEST);
   }, 5000);
 

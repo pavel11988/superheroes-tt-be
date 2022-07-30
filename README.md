@@ -1,6 +1,23 @@
-#########
+##########
+1. Create file .env
 
-RULE : Do not run your local server on ports 4001 - 4005. These ports are already used in unit tests.
+##########
+
+2. In .env paste:
+
+DB_HOST=mongodb://127.0.0.1:27017/superheroes_db
+DB_HOST_TEST=mongodb://127.0.0.1:27017/superheroes_test
+PORT=4000
+
+##########
+
+3. Make sure you have mongodb installed.
+
+##########
+
+4. Install all dependencies:
+
+#### `npm install`
 
 ##########
 
