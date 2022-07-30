@@ -12,6 +12,10 @@ PORT=4000
 ##########
 
 3. Make sure you have mongodb installed.
+3.1. Start the database
+    For example using Docker:
+#### `docker run -d -p 27017:27017 mongo`
+
 
 ##########
 
