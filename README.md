@@ -6,7 +6,7 @@ RULE : Do not run your local server on ports 4001 - 4005. These ports are alread
 
 1. Run tests:
 
-### npm run test
+#### `npm run test`
 
 RESULT TESTS (screenshot) : https://ibb.co/nmSyHMh
 
@@ -14,13 +14,13 @@ RESULT TESTS (screenshot) : https://ibb.co/nmSyHMh
 
 2. RUN IN DEVELOPMENT MODE:
 
-### npm run start:dev
+### `npm run start:dev`
 
 ##########
 
 3. RUN IN PRODUCTION MODE: 
 
-### npm run start
+### `npm run start`
 
 ##########
 
