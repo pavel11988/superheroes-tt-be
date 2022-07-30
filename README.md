@@ -8,7 +8,7 @@ RULE : Do not run your local server on ports 4001 - 4005. These ports are alread
 
     => npm run test
 
-RESULET TESTS (screenshot) : https://ibb.co/nmSyHMh
+RESULT TESTS (screenshot) : https://ibb.co/nmSyHMh
 
 ##########
 
