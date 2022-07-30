@@ -25,7 +25,7 @@ PORT=4000
 
 #### `npm run test`
 
-RESULT TESTS (screenshot) : https://ibb.co/nmSyHMh
+RESULT TESTS (screenshot) : https://ibb.co/KqfRZqL
 
 ##########
 

@@ -1,32 +1,11 @@
-const mongoose = require("mongoose");
 const request = require("supertest");
 require("dotenv").config();
-
 const app = require("../../app");
 const { Superhero } = require("../../models/");
-const { DB_HOST_TEST, PORT = 4000 } = process.env;
+const { setupDB } = require("./test-setup");
 
 describe("test delete superhero", () => {
-  let server;
-
-  beforeAll(async () => {
-    server = app.listen(PORT);
-    mongoose.connect(DB_HOST_TEST);
-  }, 5000);
-
-  afterAll(async () => {
-    await mongoose.connection.dropDatabase();
-    mongoose.connection.close();
-    server.close();
-  }, 5000);
-  test("ERROR test delete superhero route", async () => {
-    const errorId = "123456";
-
-    const res = await request(app).delete(`/api/superheroes/${errorId}`);
-    expect(res.type).toEqual("application/json");
-    expect(res.status).toEqual(404);
-    expect(res.body).toEqual({ message: "Not Found" });
-  });
+  setupDB("delete-superhero-test");
 
   test("SUCCESS test delete superhero route", async () => {
     const addedSuperhero = {

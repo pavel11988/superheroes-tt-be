@@ -1,24 +1,12 @@
-const mongoose = require("mongoose");
 const request = require("supertest");
 require("dotenv").config();
-
 const app = require("../../app");
 const { Superhero } = require("../../models/");
-const { DB_HOST_TEST, PORT = 4000 } = process.env;
+const { setupDB } = require("./test-setup");
 
 describe("test get by id superhero", () => {
-  let server;
+  setupDB("get-superhero-by-id-test");
 
-  beforeAll(async () => {
-    server = app.listen(PORT);
-    mongoose.connect(DB_HOST_TEST);
-  }, 5000);
-
-  afterAll(async () => {
-    await mongoose.connection.dropDatabase();
-    mongoose.connection.close();
-    server.close();
-  }, 5000);
   test("ERROR test get by id superhero route", async () => {
     const errorId = "123456";
 
