@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const app = require("../../app");
 const { Superhero } = require("../../models/");
-const { DB_HOST_TEST, PORT = 4002} = process.env;
+const { DB_HOST_TEST, PORT = 4002 } = process.env;
 
 describe("test add superhero", () => {
   let server;
@@ -18,13 +18,14 @@ describe("test add superhero", () => {
     await mongoose.connection.dropDatabase();
     mongoose.connection.close();
     server.close();
-}, 5000);
-;
-test("ERROR test add superhero route", async () => {
-    const res = await request(app).post('/api/superheroes');
+  }, 5000);
+  test("ERROR test add superhero route", async () => {
+    const res = await request(app).post("/api/superheroes");
     expect(res.type).toEqual("application/json");
     expect(res.status).toEqual(422);
-    expect(res.body).toEqual({"message": "nickname is required and must have minimum 3 characters."})
+    expect(res.body).toEqual({
+      message: "nickname is required and must have minimum 3 characters.",
+    });
   });
 
   test("SUCCESS test add superhero route", async () => {
@@ -34,14 +35,15 @@ test("ERROR test add superhero route", async () => {
       origin_description: "Test origin description",
       superpowers: "Test superpowers",
       catch_phrase: "Test catch phrase",
-    }
+    };
 
-    const res = await request(app).post('/api/superheroes').send(addedSuperhero);
+    const res = await request(app)
+      .post("/api/superheroes")
+      .send(addedSuperhero);
     expect(res.type).toEqual("application/json");
     expect(res.status).toEqual(201);
     const newSuperhero = res.body;
     const superhero = await Superhero.findById(newSuperhero._id);
     expect(newSuperhero._id).toBe(superhero.id);
-
   });
 });
