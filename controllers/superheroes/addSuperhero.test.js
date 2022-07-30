@@ -1,30 +1,30 @@
-// const mongoose = require("mongoose");
-// const request = require("supertest");
-// require("dotenv").config();
+const mongoose = require("mongoose");
+const request = require("supertest");
+require("dotenv").config();
 
-// const app = require("../../app");
-// const { Superhero } = require("../../models/");
+const app = require("../../app");
+const { Superhero } = require("../../models/");
 
-// const { DB_TEST_HOST, PORT } = process.env;
+const { DB_TEST_HOST, PORT } = process.env;
 
-// describe("test add superhero", () => {
-//   let server;
-//   beforeAll(() => (server = app.listen(PORT)));
-//   afterAll(() => server.close());
+describe("test add superhero", () => {
+  let server;
 
-//   beforeEach((done) => {
-//     mongoose.connect(DB_TEST_HOST).then(() => done());
-//   }, 60000);
+  beforeAll(async () => {
+    server = app.listen(PORT);
+    mongoose.connect(DB_TEST_HOST);
+  }, 5000);
 
-//   afterEach((done) => {
-//     mongoose.connection.db.dropCollection(() => {
-//       mongoose.connection.close(() => done());
-//     });
-//   }, 60000);
-
-//   test("test login route", async () => {
-//     const test = true;
-
-//     expect(test).toByTruthy();
-//   });
-// });
+  afterAll(async () => {
+    await mongoose.connection.superheroes-db-test.drop();
+    await mongoose.connection.close();
+    server.close();
+}, 5000);
+;
+test("test add superhero route", async () => {
+    const res = await request(app).post('/api/superheroes');
+    expect(res.type).toEqual("application/json");
+    expect(res.status).toEqual(422);
+    expect(res.body).toEqual({"message": "nickname is required and must have minimum 3 characters."})
+  });
+});

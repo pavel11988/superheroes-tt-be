@@ -5,7 +5,6 @@ const listSuperheroes = async (req, res) => {
 
   const numberPage = Number(page);
   const numberLimit = Number(limit);
-  console.log(numberPage, numberLimit)
 
   const skip = (numberPage - 1) * numberLimit;
   const result = await Superhero.find({}, "-createdAt -updatedAt", {
@@ -17,8 +16,6 @@ const listSuperheroes = async (req, res) => {
   const countHeroes = allHeroes.length;
   const totalPages = await Math.ceil(countHeroes / numberLimit); 
   
-  console.log(result);
-
   res.status(200).json({
     totalPages,
     page: numberPage,

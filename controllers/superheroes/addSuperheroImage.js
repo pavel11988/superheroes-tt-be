@@ -1,6 +1,6 @@
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
-const { BadRequest } = require("http-errors");
+const { BadRequest, NotFound } = require("http-errors");
 
 const fs = require("fs/promises");
 const Jimp = require("jimp");
@@ -10,8 +10,11 @@ const imagesDir = path.join(__dirname, "../../", "public", "images");
 const addSuperheroImages = async (req, res) => {
 
   const { id } = req.params; // id superhero
-  const superhero = await Superhero.findById(id);
 
+  const superhero = await Superhero.findById(id);
+  if(!superhero){
+    throw new NotFound("Superhero not found.");
+  }
 
   if (superhero.images.length === 6) {
     throw new BadRequest("You cannot add more than 6 images.");
