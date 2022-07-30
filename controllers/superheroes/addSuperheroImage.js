@@ -24,8 +24,6 @@ const addSuperheroImages = async (req, res) => {
     throw new BadRequest("Please, upload your image.");
   }
 
-  console.log(req.file)
-
   const { path: tempDir, originalname } = req.file;
   const [extention] = originalname.split(".").reverse();
 
