@@ -3,7 +3,6 @@ const cors = require("cors");
 const logger = require("morgan");
 
 require("dotenv").config();
-
 const app = express();
 
 const superherosRouter = require("./routes/api/superheroes");
